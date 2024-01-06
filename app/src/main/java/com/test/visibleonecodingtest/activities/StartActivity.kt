@@ -15,6 +15,5 @@ class StartActivity : BaseActivity<ActivityStartBinding>() {
         binding.btnStart.setOnClickListener {
             startActivity(MainActivity.newIntent(this))
         }
-
     }
 }
