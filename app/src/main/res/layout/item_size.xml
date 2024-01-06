@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_brand"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_small"
+    android:backgroundTint="@color/background_gray"
+    app:cardCornerRadius="@dimen/margin_medium_1"
+    app:strokeWidth="0dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium_7"
+        android:layout_marginVertical="@dimen/margin_medium_1"
+        android:text="5"
+        android:textSize="@dimen/text_regular_2x"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+
+</com.google.android.material.card.MaterialCardView>
