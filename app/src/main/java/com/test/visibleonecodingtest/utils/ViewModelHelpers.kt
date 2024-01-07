@@ -19,10 +19,5 @@ object ViewModelHelpers {
         loading.postValue(false)
         error.postValue(err.localizedMessage)
     }
-
-    fun <T> MutableLiveData<T>.notifyObserver() {
-        this.value = this.value
-    }
-
 }
 

@@ -17,7 +17,7 @@ object Extensions {
         return this.map { it.toBrandVO() }
     }
 
-    private fun ShoeResponse.toShoeVO() = ShoeVO(
+    fun ShoeResponse.toShoeVO() = ShoeVO(
         id = id,
         name = name,
         imageUrl = imageUrl,
@@ -28,5 +28,8 @@ object Extensions {
     fun List<ShoeResponse>.toShoeVOList(): List<ShoeVO> {
         return this.map { it.toShoeVO() }
     }
+
+    fun getImageUrlFromFirebase(name: String) =
+        "https://firebasestorage.googleapis.com/v0/b/shoescollection-821f8.appspot.com/o/$name?alt=media"
 
 }

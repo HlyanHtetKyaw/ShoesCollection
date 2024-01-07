@@ -2,28 +2,126 @@ package com.test.visibleonecodingtest.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
+import com.bumptech.glide.Glide
+import com.test.visibleonecodingtest.R
+import com.test.visibleonecodingtest.adapters.ShoeSizeAdapter
 import com.test.visibleonecodingtest.databinding.ActivityShoeDetailBinding
+import com.test.visibleonecodingtest.delegates.ShoeSizeDelegates
+import com.test.visibleonecodingtest.utils.Extensions
+import com.test.visibleonecodingtest.viewModels.ShoeDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDelegates {
 
-class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>() {
+    private lateinit var mShoeSizeAdapter: ShoeSizeAdapter
 
     override fun onCreateViewBinding() = ActivityShoeDetailBinding.inflate(layoutInflater)
 
     override fun initDependencies(savedInstanceState: Bundle?) {
-
     }
 
+    private val shoeListViewModel by viewModels<ShoeDetailViewModel>()
+
     companion object {
-        fun newIntent(context: Context): Intent {
+        private var id: Int = 0
+        fun newIntent(context: Context, id: Int): Intent {
+            this.id = id
             return Intent(context, ShoeDetailActivity::class.java)
         }
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
-        binding.apply {
-
+        shoeListViewModel.apply {
+            getShoeDetail(id)
+            showProgressBar.observe(this@ShoeDetailActivity) {
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+            showError.observe(this@ShoeDetailActivity) {
+                if (it.isNotEmpty()) {
+                    Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+                }
+            }
+            shoeDetail.observe(this@ShoeDetailActivity) {
+                binding.progressBar.visibility = View.GONE
+                with(binding) {
+                    tvName.text = it.name
+                    tvPrice.text = it.price
+                    tvCategory.text = it.category
+                    Glide.with(binding.ivShoe.context)
+                        .load(Extensions.getImageUrlFromFirebase(it.imageUrl))
+                        .placeholder(R.drawable.logo_nike)
+                        .error(R.drawable.logo_nike).into(binding.ivShoe)
+                }
+            }
         }
-
+        binding.apply {
+            mShoeSizeAdapter = ShoeSizeAdapter(this@ShoeDetailActivity)
+            rvSize.adapter = mShoeSizeAdapter
+            setupDifferentSizes(1)
+            tvUs.setOnClickListener { setupDifferentSizes(1) }
+            tvUk.setOnClickListener { setupDifferentSizes(2) }
+            tvEu.setOnClickListener { setupDifferentSizes(3) }
+            tvPlus.setOnClickListener {
+                val quantity = tvQuantity.text.toString().toInt() + 1
+                tvQuantity.text = quantity.toString()
+            }
+            tvMinus.setOnClickListener {
+                val quantity = tvQuantity.text.toString().toInt() - 1
+                if (quantity > 0) {
+                    tvQuantity.text = quantity.toString()
+                } else {
+                    Toast.makeText(
+                        this@ShoeDetailActivity,
+                        "Item size cannot be less than zero",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
+
+    private fun setupDifferentSizes(type: Int) {
+        binding.apply {
+            val sizeList = when (type) {
+                1 -> {
+                    tvUs.setTypeface(tvUs.typeface, Typeface.BOLD)
+                    tvUk.setTypeface(null, Typeface.NORMAL)
+                    tvEu.setTypeface(null, Typeface.NORMAL)
+                    listOf("36", "37", "38", "39", "40")
+                }
+
+                2 -> {
+                    tvUs.setTypeface(null, Typeface.NORMAL)
+                    tvUk.setTypeface(tvUk.typeface, Typeface.BOLD)
+                    tvEu.setTypeface(null, Typeface.NORMAL)
+                    listOf("5", "5.5", "6", "6.5", "7")
+                }
+
+                3 -> {
+                    tvUs.setTypeface(null, Typeface.NORMAL)
+                    tvUk.setTypeface(null, Typeface.NORMAL)
+                    tvEu.setTypeface(tvEu.typeface, Typeface.BOLD)
+                    listOf("42", "42.5", "43", "43.5", "44")
+                }
+
+                else -> listOf("5", "5.5", "6", "6.5", "7")
+            }
+            mShoeSizeAdapter.setNewData(sizeList.toMutableList())
+        }
+    }
+
+    override fun onTapShoeSize(data: String) {
+        Toast.makeText(this, "You choose $data size.", Toast.LENGTH_SHORT).show()
+    }
+
 }

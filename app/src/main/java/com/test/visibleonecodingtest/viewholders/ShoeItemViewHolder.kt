@@ -6,6 +6,7 @@ import com.test.visibleonecodingtest.R
 import com.test.visibleonecodingtest.databinding.ItemShoeBinding
 import com.test.visibleonecodingtest.delegates.ShoeItemDelegates
 import com.test.visibleonecodingtest.models.ShoeVO
+import com.test.visibleonecodingtest.utils.Extensions.getImageUrlFromFirebase
 
 class ShoeItemViewHolder(
     val binding: ItemShoeBinding,
@@ -18,10 +19,8 @@ class ShoeItemViewHolder(
         binding.apply {
             tvName.text = data.name
             tvPrice.text = data.price
-            val imageUrl =
-                "https://firebasestorage.googleapis.com/v0/b/shoescollection-821f8.appspot.com/o/${data.imageUrl}?alt=media"
             Glide.with(binding.ivShoe.context)
-                .load(imageUrl)
+                .load(getImageUrlFromFirebase(data.imageUrl))
                 .placeholder(R.drawable.logo_nike)
                 .error(R.drawable.logo_nike).into(binding.ivShoe)
         }

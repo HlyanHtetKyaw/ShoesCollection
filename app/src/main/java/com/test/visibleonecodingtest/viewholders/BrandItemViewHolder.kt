@@ -9,6 +9,7 @@ import com.test.visibleonecodingtest.R
 import com.test.visibleonecodingtest.databinding.ItemBrandBinding
 import com.test.visibleonecodingtest.delegates.BrandItemDelegates
 import com.test.visibleonecodingtest.models.BrandVO
+import com.test.visibleonecodingtest.utils.Extensions
 
 class BrandItemViewHolder(
     val binding: ItemBrandBinding,
@@ -17,10 +18,8 @@ class BrandItemViewHolder(
 
     override fun setData(data: BrandVO) {
         mData = data
-        val imageUrl =
-            "https://firebasestorage.googleapis.com/v0/b/shoescollection-821f8.appspot.com/o/${data.logo}?alt=media"
         Glide.with(binding.ivBrand.context)
-            .load(imageUrl)
+            .load(Extensions.getImageUrlFromFirebase(data.logo))
             .placeholder(R.drawable.logo_nike)
             .error(R.drawable.logo_nike).into(binding.ivBrand)
         if (data.isItemSelected) {

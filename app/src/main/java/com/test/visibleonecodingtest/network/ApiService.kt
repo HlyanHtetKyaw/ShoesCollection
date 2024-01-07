@@ -18,4 +18,10 @@ interface ApiService {
         @Query("equalTo") equalTo: Int
     ): Map<String, ShoeResponse>
 
+    @GET(SHOE_LIST)
+    suspend fun shoeDetail(
+        @Query("orderBy") orderBy: String = "\"id\"",
+        @Query("equalTo") equalTo: Int
+    ): Map<String, ShoeResponse>
+
 }

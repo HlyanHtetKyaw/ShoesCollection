@@ -1,11 +1,9 @@
 package com.test.visibleonecodingtest.viewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.test.visibleonecodingtest.models.BrandVO
 import com.test.visibleonecodingtest.models.ShoeVO
 import com.test.visibleonecodingtest.network.repository.MainRepository
