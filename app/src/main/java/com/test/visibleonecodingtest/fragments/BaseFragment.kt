@@ -50,5 +50,4 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         _activity = null
         _context = null
     }
-
 }

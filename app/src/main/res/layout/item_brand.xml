@@ -11,9 +11,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/logo_nike" />
 
 </com.google.android.material.card.MaterialCardView>

@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.test.visibleonecodingtest.BuildConfig
 import com.test.visibleonecodingtest.network.ApiService
+import com.test.visibleonecodingtest.network.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,6 +58,10 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun providesRepository(apiService: ApiService) = MainRepository(apiService)
 
     @Singleton
     @Provides

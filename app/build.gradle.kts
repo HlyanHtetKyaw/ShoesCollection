@@ -25,7 +25,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://firebase.com/api/api/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://shoescollection-821f8-default-rtdb.firebaseio.com/\""
+            )
         }
         debug {
             isMinifyEnabled = false
@@ -33,7 +37,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://firebase.com/api/api/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://shoescollection-821f8-default-rtdb.firebaseio.com/\""
+            )
         }
     }
     compileOptions {
@@ -61,8 +69,8 @@ dependencies {
 
     // Navigation Graph
     val navigationVersion = "2.7.6"
-    implementation ("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
-    implementation ("androidx.navigation:navigation-ui-ktx:$navigationVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
 
     // Dependency Injection
     val hiltVersion = "2.48.1"
@@ -78,11 +86,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 
     // Image Loading
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
 
     // LifeCycle
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
 }
