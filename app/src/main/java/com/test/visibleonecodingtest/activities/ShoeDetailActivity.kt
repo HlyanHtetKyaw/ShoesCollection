@@ -14,6 +14,7 @@ import com.test.visibleonecodingtest.R
 import com.test.visibleonecodingtest.adapters.ShoeSizeAdapter
 import com.test.visibleonecodingtest.databinding.ActivityShoeDetailBinding
 import com.test.visibleonecodingtest.delegates.ShoeSizeDelegates
+import com.test.visibleonecodingtest.models.ShoeSizeVO
 import com.test.visibleonecodingtest.utils.Extensions
 import com.test.visibleonecodingtest.viewModels.ShoeDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +29,7 @@ class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDe
     override fun initDependencies(savedInstanceState: Bundle?) {
     }
 
-    private val shoeListViewModel by viewModels<ShoeDetailViewModel>()
+    private val shoeDetailViewModel by viewModels<ShoeDetailViewModel>()
 
     companion object {
         private var id: Int = 0
@@ -39,8 +40,10 @@ class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDe
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
-        shoeListViewModel.apply {
+        shoeDetailViewModel.apply {
             getShoeDetail(id)
+            getShoeSizeList(1)
+
             showProgressBar.observe(this@ShoeDetailActivity) {
                 if (it) {
                     binding.progressBar.visibility = View.VISIBLE
@@ -65,7 +68,11 @@ class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDe
                         .error(R.drawable.logo_nike).into(binding.ivShoe)
                 }
             }
+            shoeSizeList.observe(this@ShoeDetailActivity) {
+                mShoeSizeAdapter.setNewData(it.toMutableList())
+            }
         }
+
         binding.apply {
             mShoeSizeAdapter = ShoeSizeAdapter(this@ShoeDetailActivity)
             rvSize.adapter = mShoeSizeAdapter
@@ -102,36 +109,37 @@ class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDe
 
     private fun setupDifferentSizes(type: Int) {
         binding.apply {
-            val sizeList = when (type) {
+            when (type) {
                 1 -> {
                     tvUs.setTypeface(tvUs.typeface, Typeface.BOLD)
                     tvUk.setTypeface(null, Typeface.NORMAL)
                     tvEu.setTypeface(null, Typeface.NORMAL)
-                    listOf("36", "37", "38", "39", "40")
                 }
 
                 2 -> {
                     tvUs.setTypeface(null, Typeface.NORMAL)
                     tvUk.setTypeface(tvUk.typeface, Typeface.BOLD)
                     tvEu.setTypeface(null, Typeface.NORMAL)
-                    listOf("5", "5.5", "6", "6.5", "7")
                 }
 
                 3 -> {
                     tvUs.setTypeface(null, Typeface.NORMAL)
                     tvUk.setTypeface(null, Typeface.NORMAL)
                     tvEu.setTypeface(tvEu.typeface, Typeface.BOLD)
-                    listOf("42", "42.5", "43", "43.5", "44")
                 }
 
-                else -> listOf("5", "5.5", "6", "6.5", "7")
+                else -> {
+                    tvUs.setTypeface(tvUs.typeface, Typeface.BOLD)
+                    tvUk.setTypeface(null, Typeface.NORMAL)
+                    tvEu.setTypeface(null, Typeface.NORMAL)
+                }
             }
-            mShoeSizeAdapter.setNewData(sizeList.toMutableList())
         }
+        shoeDetailViewModel.getShoeSizeList(type)
     }
 
-    override fun onTapShoeSize(data: String) {
-        Toast.makeText(this, "You choose $data size.", Toast.LENGTH_SHORT).show()
+    override fun onTapShoeSize(data: ShoeSizeVO) {
+        shoeDetailViewModel.changeShoeSize(data.id)
     }
 
 
@@ -190,7 +198,7 @@ class ShoeDetailActivity : BaseActivity<ActivityShoeDetailBinding>(), ShoeSizeDe
     }
 
     private fun getContentHeight(): Int {
-        // Measure the height of the content when it's visible
+        // Measure the height of the content when it's visible +100 for margin
         binding.tvDescription.measure(
             View.MeasureSpec.makeMeasureSpec(binding.clDescription.width, View.MeasureSpec.EXACTLY),
             View.MeasureSpec.UNSPECIFIED

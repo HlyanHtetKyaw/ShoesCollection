@@ -8,7 +8,6 @@ class StartActivity : BaseActivity<ActivityStartBinding>() {
     override fun onCreateViewBinding() = ActivityStartBinding.inflate(layoutInflater)
 
     override fun initDependencies(savedInstanceState: Bundle?) {
-
     }
 
     override fun initViews(savedInstanceState: Bundle?) {

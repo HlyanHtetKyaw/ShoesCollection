@@ -26,7 +26,7 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_xxlarge"
+        android:layout_marginBottom="@dimen/margin_xlarge"
         android:text="@string/smart_gorgeous_amp_fashionable_collection_makes_you_cool"
         android:textAlignment="center"
         android:textColor="@color/white"

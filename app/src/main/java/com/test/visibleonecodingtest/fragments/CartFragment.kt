@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.test.visibleonecodingtest.databinding.FragmentCartBinding
-import com.test.visibleonecodingtest.databinding.FragmentHomeBinding
 
 class CartFragment : BaseFragment<FragmentCartBinding>() {
 

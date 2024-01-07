@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -62,7 +63,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-
     private fun configureToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -73,12 +73,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.toolbar_item_cart -> {
-                    navController.navigate(R.id.cartFragment)
+                    Toast.makeText(this, "Cart", Toast.LENGTH_SHORT).show()
                 }
             }
             true
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

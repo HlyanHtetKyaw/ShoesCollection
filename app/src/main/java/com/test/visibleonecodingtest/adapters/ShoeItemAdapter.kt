@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.test.visibleonecodingtest.databinding.ItemShoeBinding
 import com.test.visibleonecodingtest.delegates.ShoeItemDelegates
-import com.test.visibleonecodingtest.models.BrandVO
 import com.test.visibleonecodingtest.models.ShoeVO
 import com.test.visibleonecodingtest.viewholders.BaseViewHolder
 import com.test.visibleonecodingtest.viewholders.ShoeItemViewHolder

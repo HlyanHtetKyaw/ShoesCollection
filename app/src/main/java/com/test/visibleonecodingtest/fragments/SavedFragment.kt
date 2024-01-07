@@ -70,7 +70,7 @@ class SavedFragment : BaseFragment<FragmentSavedBinding>(), BrandItemDelegates, 
     }
 
     override fun onTapItem(data: ShoeVO) {
-        startActivity(ShoeDetailActivity.newIntent(getContext,data.id))
+        startActivity(ShoeDetailActivity.newIntent(getContext, data.id))
     }
 
     override fun onTapBrandItem(data: BrandVO) {
