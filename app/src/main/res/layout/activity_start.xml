@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_medium_3x"
         android:text="@string/live_your_perfect"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/text_big"
         android:textStyle="bold"
@@ -29,7 +30,6 @@
         android:text="@string/smart_gorgeous_amp_fashionable_collection_makes_you_cool"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_regular_2x"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

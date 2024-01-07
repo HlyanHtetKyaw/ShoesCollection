@@ -6,26 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginEnd="@dimen/margin_medium_1"
-        android:background="@drawable/bg_circle_white"
-        android:padding="@dimen/margin_medium_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_heart" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -39,6 +19,26 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium_1"
+                android:background="@drawable/bg_circle_white"
+                android:padding="@dimen/margin_medium_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_heart" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_shoe"
@@ -73,10 +73,10 @@
                 android:id="@+id/iv_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintBottom_toBottomOf="@id/tv_rating"
                 app:layout_constraintEnd_toStartOf="@id/tv_rating"
-                app:layout_constraintTop_toBottomOf="@id/iv_shoe"
+                app:layout_constraintTop_toTopOf="@id/tv_rating"
                 app:srcCompat="@drawable/ic_star" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:text="@string/uk"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular_2x"
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
-                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:text="@string/us"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular_2x"
@@ -164,27 +164,50 @@
                 app:layout_constraintTop_toBottomOf="@+id/lbl_size"
                 tools:listitem="@layout/item_size" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lbl_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_medium_1"
-                android:layout_marginTop="@dimen/margin_medium_1"
-                android:text="@string/description"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_regular_2x"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_size" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_more_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_medium_1"
-                app:layout_constraintBottom_toBottomOf="@id/lbl_description"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_description"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/lbl_description"
-                app:srcCompat="@drawable/ic_down_arrow" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_size">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_1"
+                    android:layout_marginTop="@dimen/margin_medium_1"
+                    android:text="@string/description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular_2x"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_more_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium_1"
+                    app:layout_constraintBottom_toBottomOf="@id/lbl_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/lbl_description"
+                    app:srcCompat="@drawable/ic_down_arrow" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_1"
+                    android:layout_marginTop="@dimen/margin_medium_1"
+                    android:text="@string/dummy_text"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lbl_description" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/description_divider"
@@ -192,29 +215,52 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/margin_medium_1"
                 android:layout_marginTop="@dimen/margin_medium_1"
-                app:layout_constraintTop_toBottomOf="@id/lbl_description" />
+                app:layout_constraintTop_toBottomOf="@id/cl_description" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lbl_delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_medium_1"
-                android:layout_marginTop="@dimen/margin_medium_1"
-                android:text="@string/free_delivery_and_returns"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_regular_2x"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_divider" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_more_delivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_medium_1"
-                app:layout_constraintBottom_toBottomOf="@id/lbl_delivery"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/lbl_delivery"
-                app:srcCompat="@drawable/ic_down_arrow" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_divider">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_1"
+                    android:layout_marginTop="@dimen/margin_medium_1"
+                    android:text="@string/free_delivery_and_returns"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular_2x"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_more_delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium_1"
+                    app:layout_constraintBottom_toBottomOf="@id/lbl_delivery"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/lbl_delivery"
+                    app:srcCompat="@drawable/ic_down_arrow" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_delivery"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_1"
+                    android:layout_marginTop="@dimen/margin_medium_1"
+                    android:text="@string/dummy_text"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lbl_delivery" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/delivery_divider"
@@ -222,7 +268,7 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/margin_medium_1"
                 android:layout_marginTop="@dimen/margin_medium_1"
-                app:layout_constraintTop_toBottomOf="@id/lbl_delivery" />
+                app:layout_constraintTop_toBottomOf="@id/cl_delivery" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_white"
